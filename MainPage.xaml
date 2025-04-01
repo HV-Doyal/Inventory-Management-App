@@ -1,34 +1,113 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UndergradProject.MainPage">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="UndergradProject.MainPage"
+    BackgroundColor="{StaticResource BgColor}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+
+        <VerticalStackLayout 
+            Padding="10" 
+            Spacing="10">
 
             <!-- Dashboard Title -->
-            <Label Text="Dashboard" FontSize="24" TextColor="White" HorizontalOptions="Center" />
+            <Label 
+                Text="Dashboard" 
+                FontSize="24" 
+                TextColor="{StaticResource TextColor}" 
+                HorizontalOptions="Center" 
+                />
 
             <!-- User Info Display -->
-            <Frame BackgroundColor="DarkGray" CornerRadius="10" Padding="10">
-                <VerticalStackLayout>
-                    <Label Text="Welcome, Username" TextColor="White" FontSize="18" />
-                    <Button Text="Edit Profile" BackgroundColor="Transparent" TextColor="LightGray" />
-                    <Button Text="Log Out" BackgroundColor="Transparent" TextColor="LightGray" />
+            <Border 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                StrokeThickness="2"
+                Stroke="{StaticResource TextColor}"
+                Padding="10">
+
+                <VerticalStackLayout 
+                    Spacing="5">
+
+                    <Label 
+                        Text="Welcome, Username" 
+                        TextColor="{StaticResource TextColor}" 
+                        FontSize="18" 
+                        />
+
+                    <Image 
+                        Source="default_profile.png" 
+                        HeightRequest="80" 
+                        WidthRequest="80"
+                        />
+
+                    <Button 
+                        Text="Edit Profile" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource TextColor}" 
+                        />
+
+                    <Button 
+                        Text="Log Out" 
+                        BackgroundColor="Transparent" 
+                        TextColor="{StaticResource TextColor}" 
+                        />
+
                 </VerticalStackLayout>
-            </Frame>
+
+            </Border>
 
             <!-- Checkout Button -->
-            <Button Text="Checkout" ImageSource="Assets/checkout.png" BackgroundColor="DarkGray" TextColor="White" FontSize="18" CornerRadius="10" HeightRequest="80" />
+            <Button 
+                Text="Checkout" 
+                ImageSource="checkout.png" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}" 
+                FontSize="18" 
+                CornerRadius="10" 
+                HeightRequest="80" 
+                />
 
             <!-- Analytics Button -->
-            <Button Text="Analytics" ImageSource="Assets/analytics.png" BackgroundColor="DarkGray" TextColor="White" FontSize="18" CornerRadius="10" HeightRequest="80" />
+            <Button 
+                Text="Analytics" 
+                ImageSource="analytics.png" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}" 
+                FontSize="18" 
+                CornerRadius="10" 
+                HeightRequest="80" 
+                />
 
             <!-- Add & Edit Item Buttons -->
             <HorizontalStackLayout>
-                <Button Text="ADD ITEM" ImageSource="Assets/additem.png" BackgroundColor="DarkGray" TextColor="White" FontSize="18" CornerRadius="10" HeightRequest="80" WidthRequest="150" />
-                <Button Text="EDIT ITEM" ImageSource="Assets/edititem.png" BackgroundColor="DarkGray" TextColor="White" FontSize="18" CornerRadius="10" HeightRequest="80" WidthRequest="150" />
+
+                <Button 
+                    Text="ADD ITEM" 
+                    ImageSource="add_item.png" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
+                    FontSize="18" 
+                    CornerRadius="10" 
+                    HeightRequest="80" 
+                    WidthRequest="150" 
+                    />
+
+                <Button 
+                    Text="EDIT ITEM" 
+                    ImageSource="add_item.png" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
+                    FontSize="18" 
+                    CornerRadius="10" 
+                    HeightRequest="80" 
+                    WidthRequest="150" 
+                    />
+
             </HorizontalStackLayout>
+
         </VerticalStackLayout>
+
     </ScrollView>
+
 </ContentPage>
