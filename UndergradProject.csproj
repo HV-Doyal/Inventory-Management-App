@@ -67,6 +67,7 @@
 	<ItemGroup>
 	  <Folder Include="Business Logic Layer\" />
 	  <Folder Include="Data Access Layer\" />
+	  <Folder Include="Assets\" />
 	</ItemGroup>
 
 </Project>
