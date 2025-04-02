@@ -6,4 +6,9 @@ public partial class LoginPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void loginButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
