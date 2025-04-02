@@ -5,37 +5,51 @@
     x:Class="UndergradProject.MainPage"
     BackgroundColor="{StaticResource BgColor}">
 
-    <ScrollView>
-
+    <Grid RowDefinitions="Auto, *">
+        
+        <!-- First Grid: User Info Section -->
         <VerticalStackLayout 
             Padding="10" 
-            Spacing="10">
+            Spacing="10"
+            Grid.Row="0">
 
             <!-- Dashboard Title -->
-            <Label 
-                Text="Dashboard" 
-                FontSize="24" 
-                TextColor="{StaticResource TextColor}" 
-                HorizontalOptions="Center" 
-                />
+            <Border
+                BackgroundColor="{StaticResource ButtonColor}" 
+                StrokeShape="RoundRectangle 10" 
+                Padding="10"
+                StrokeThickness="0">
+
+                <Label 
+                    Text="Dashboard" 
+                    FontSize="36" 
+                    TextColor="{StaticResource TextColor}" 
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    />
+            </Border>
+
+
 
             <!-- User Info Display -->
             <Border 
                 BackgroundColor="{StaticResource ButtonColor}" 
                 StrokeShape="RoundRectangle 10" 
-                Padding="10">
+                Padding="10"
+                StrokeThickness="0">
 
-                <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto">
+                <Grid 
+                    RowDefinitions="Auto, Auto, Auto" 
+                    ColumnDefinitions="*, Auto">
 
                     <!-- Welcome Text -->
                     <Label 
                         Text="Welcome, Username" 
                         TextColor="{StaticResource TextColor}" 
-                        FontSize="18" 
+                        FontSize="24" 
                         VerticalOptions="Center"
                         Grid.Row="0"
-                        Grid.Column="0"
-                        />
+                        Grid.Column="0"/>
 
                     <!-- Profile Image -->
                     <Image 
@@ -44,8 +58,7 @@
                         WidthRequest="80"
                         VerticalOptions="Center"
                         Grid.Row="0"
-                        Grid.Column="1"
-                        />
+                        Grid.Column="1"/>
 
                     <!-- Edit Profile Button -->
                     <Button 
@@ -54,8 +67,7 @@
                         TextColor="{StaticResource TextColor}" 
                         HorizontalOptions="Start"
                         Grid.Row="1"
-                        Grid.Column="0"
-                        />
+                        Grid.Column="0"/>
 
                     <!-- Log Out Button -->
                     <Button 
@@ -64,12 +76,23 @@
                         TextColor="{StaticResource TextColor}" 
                         HorizontalOptions="Start"
                         Grid.Row="2"
-                        Grid.Column="0"
-                        />
+                        Grid.Column="0"/>
 
                 </Grid>
 
             </Border>
+
+        </VerticalStackLayout>
+
+        <!-- Second Grid: Buttons Section (Expands to Fill Remaining Space) -->
+        <Grid 
+            RowDefinitions="Auto, Auto, Auto, Auto" 
+            ColumnDefinitions="*, Auto, Auto, *" 
+            Padding="10" 
+            ColumnSpacing="10" 
+            RowSpacing="20"
+            Grid.Row="1"
+            VerticalOptions="Fill">
 
             <!-- Checkout Button -->
             <Button 
@@ -77,10 +100,13 @@
                 ImageSource="checkout.png" 
                 BackgroundColor="{StaticResource ButtonColor}" 
                 TextColor="{StaticResource TextColor}" 
-                FontSize="18" 
-                CornerRadius="10" 
-                HeightRequest="80" 
-                />
+                FontSize="36" 
+                CornerRadius="10"
+                HeightRequest="120"
+                ContentLayout="Right, 20"
+                Grid.Row="0" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2"/>       
 
             <!-- Analytics Button -->
             <Button 
@@ -88,13 +114,35 @@
                 ImageSource="analytics.png" 
                 BackgroundColor="{StaticResource ButtonColor}" 
                 TextColor="{StaticResource TextColor}" 
-                FontSize="18" 
+                FontSize="36" 
                 CornerRadius="10" 
-                HeightRequest="80" 
+                HeightRequest="120"
+                ContentLayout="Right, 20"
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2"/>
+
+            <!-- Inventory Button -->
+            <Button 
+                Text="Inventory" 
+                ImageSource="inventory.png" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}" 
+                FontSize="36" 
+                CornerRadius="10" 
+                HeightRequest="120"
+                ContentLayout="Right, 20"
+                Grid.Row="2" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2"
                 />
 
-            <!-- Add & Edit Item Buttons -->
-            <HorizontalStackLayout>
+            <!-- Add & Edit Item Buttons in a Horizontal Layout -->
+            <HorizontalStackLayout 
+                Grid.Row="3" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2" 
+                Spacing="20">
 
                 <Button 
                     Text="ADD ITEM" 
@@ -104,7 +152,7 @@
                     FontSize="18" 
                     CornerRadius="10" 
                     HeightRequest="80" 
-                    WidthRequest="150" 
+                    ContentLayout="Right, 20"
                     />
 
                 <Button 
@@ -115,13 +163,13 @@
                     FontSize="18" 
                     CornerRadius="10" 
                     HeightRequest="80" 
-                    WidthRequest="150" 
+                    ContentLayout="Right, 20"
                     />
 
             </HorizontalStackLayout>
 
-        </VerticalStackLayout>
+        </Grid>
 
-    </ScrollView>
+    </Grid>
 
 </ContentPage>
