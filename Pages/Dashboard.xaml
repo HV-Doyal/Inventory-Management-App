@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="UndergradProject.MainPage"
+    x:Class="UndergradProject.Pages.Dashboard"
     BackgroundColor="{StaticResource BgColor}">
 
     <Grid RowDefinitions="Auto, *">
-        
+
         <!-- First Grid: User Info Section -->
         <VerticalStackLayout 
             Padding="10" 
@@ -96,6 +96,8 @@
 
             <!-- Checkout Button -->
             <Button 
+                x:Name="checkoutButton"
+                Clicked="checkoutButton_Clicked"
                 Text="Checkout" 
                 ImageSource="checkout.png" 
                 BackgroundColor="{StaticResource ButtonColor}" 
@@ -106,10 +108,12 @@
                 ContentLayout="Right, 20"
                 Grid.Row="0" 
                 Grid.Column="1" 
-                Grid.ColumnSpan="2"/>       
+                Grid.ColumnSpan="2"/>
 
             <!-- Analytics Button -->
             <Button 
+                x:Name="analyticsButton"
+                Clicked="analyticsButton_Clicked"
                 Text="Analytics" 
                 ImageSource="analytics.png" 
                 BackgroundColor="{StaticResource ButtonColor}" 
@@ -124,6 +128,8 @@
 
             <!-- Inventory Button -->
             <Button 
+                x:Name="inventoryButton"
+                Clicked="inventoryButton_Clicked" 
                 Text="Inventory" 
                 ImageSource="inventory.png" 
                 BackgroundColor="{StaticResource ButtonColor}" 
@@ -145,6 +151,8 @@
                 Spacing="20">
 
                 <Button 
+                    x:Name="addItem"
+                    Clicked="addItem_Clicked"
                     Text="ADD ITEM" 
                     ImageSource="add_item.png" 
                     BackgroundColor="{StaticResource ButtonColor}" 
@@ -156,6 +164,8 @@
                     />
 
                 <Button 
+                    x:Name="editItem"
+                    Clicked="editItem_Clicked"
                     Text="EDIT ITEM" 
                     ImageSource="edit_item.png" 
                     BackgroundColor="{StaticResource ButtonColor}" 
