@@ -22,38 +22,52 @@
             <!-- User Info Display -->
             <Border 
                 BackgroundColor="{StaticResource ButtonColor}" 
-                StrokeThickness="2"
-                Stroke="{StaticResource TextColor}"
+                StrokeShape="RoundRectangle 10" 
                 Padding="10">
 
-                <VerticalStackLayout 
-                    Spacing="5">
+                <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto">
 
+                    <!-- Welcome Text -->
                     <Label 
                         Text="Welcome, Username" 
                         TextColor="{StaticResource TextColor}" 
                         FontSize="18" 
+                        VerticalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="0"
                         />
 
+                    <!-- Profile Image -->
                     <Image 
                         Source="default_profile.png" 
                         HeightRequest="80" 
                         WidthRequest="80"
+                        VerticalOptions="Center"
+                        Grid.Row="0"
+                        Grid.Column="1"
                         />
 
+                    <!-- Edit Profile Button -->
                     <Button 
                         Text="Edit Profile" 
                         BackgroundColor="Transparent" 
                         TextColor="{StaticResource TextColor}" 
+                        HorizontalOptions="Start"
+                        Grid.Row="1"
+                        Grid.Column="0"
                         />
 
+                    <!-- Log Out Button -->
                     <Button 
                         Text="Log Out" 
                         BackgroundColor="Transparent" 
                         TextColor="{StaticResource TextColor}" 
+                        HorizontalOptions="Start"
+                        Grid.Row="2"
+                        Grid.Column="0"
                         />
 
-                </VerticalStackLayout>
+                </Grid>
 
             </Border>
 
@@ -95,7 +109,7 @@
 
                 <Button 
                     Text="EDIT ITEM" 
-                    ImageSource="add_item.png" 
+                    ImageSource="edit_item.png" 
                     BackgroundColor="{StaticResource ButtonColor}" 
                     TextColor="{StaticResource TextColor}" 
                     FontSize="18" 
