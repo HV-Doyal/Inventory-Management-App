@@ -2,11 +2,52 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UndergradProject.Pages.SignupPage"
-             Title="SignupPage">
-    <VerticalStackLayout>
+             Title="SignupPage"
+             BackgroundColor="{StaticResource BgColor}">
+
+    <VerticalStackLayout 
+        Padding="20" 
+        Spacing="20"
+        VerticalOptions="Center">
+
+        <!-- Title -->
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Sign Up" 
+            FontSize="24" 
+            TextColor="{StaticResource TextColor}" 
+            HorizontalOptions="Center"/>
+
+        <!-- Username Entry -->
+        <VerticalStackLayout>
+            <Label Text="Username" TextColor="{StaticResource TextColor}"/>
+            <Entry x:Name="usernameEntry" BackgroundColor="{StaticResource ButtonColor}" TextColor="{StaticResource TextColor}"/>
+        </VerticalStackLayout>
+
+        <!-- Email Entry -->
+        <VerticalStackLayout>
+            <Label Text="Email" TextColor="{StaticResource TextColor}"/>
+            <Entry x:Name="emailEntry" BackgroundColor="{StaticResource ButtonColor}" TextColor="{StaticResource TextColor}" Keyboard="Email"/>
+        </VerticalStackLayout>
+
+        <!-- Password Entry -->
+        <VerticalStackLayout>
+            <Label Text="Password" TextColor="{StaticResource TextColor}"/>
+            <Entry x:Name="passwordEntry" BackgroundColor="{StaticResource ButtonColor}" TextColor="{StaticResource TextColor}" IsPassword="True"/>
+        </VerticalStackLayout>
+
+        <!-- Sign Up Button -->
+        <Button 
+            Text="Sign up" 
+            BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}" 
+            />
+
+        <!-- Log In Navigation -->
+        <Button 
+            Text="Login instead?" 
+            BackgroundColor="Transparent" 
+            TextColor="{StaticResource TextColor}" 
+            HorizontalOptions="Center"
+            />
     </VerticalStackLayout>
 </ContentPage>
