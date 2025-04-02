@@ -13,7 +13,7 @@ namespace UndergradProject
         {
             return new Window
             {
-                Page = new Dashboard() 
+                Page = new LoginPage() 
             };
         }
     }
