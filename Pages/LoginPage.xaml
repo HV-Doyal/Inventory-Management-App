@@ -4,6 +4,7 @@
              x:Class="UndergradProject.LoginPage"
              Title="LoginPage"
              BackgroundColor="{StaticResource BgColor}">
+    
     <VerticalStackLayout 
         Padding="20" 
         Spacing="20"
@@ -14,18 +15,37 @@
             Text="Log in" 
             FontSize="24" 
             TextColor="{StaticResource TextColor}" 
-            HorizontalOptions="Center"/>
+            HorizontalOptions="Center"
+            />
 
         <!-- Username Entry -->
         <VerticalStackLayout>
-            <Label Text="Username" TextColor="{StaticResource TextColor}"/>
-            <Entry x:Name="usernameEntry" BackgroundColor="{StaticResource ButtonColor}" TextColor="{StaticResource TextColor}"/>
+            <Label 
+                Text="Username" 
+                TextColor="{StaticResource TextColor}"
+                />
+            
+            <Entry 
+                x:Name="usernameEntry" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}"
+                />
+            
         </VerticalStackLayout>
 
         <!-- Password Entry -->
         <VerticalStackLayout>
-            <Label Text="Password" TextColor="{StaticResource TextColor}"/>
-            <Entry x:Name="passwordEntry" BackgroundColor="{StaticResource ButtonColor}" TextColor="{StaticResource TextColor}" IsPassword="True"/>
+            <Label 
+                Text="Password" 
+                TextColor="{StaticResource TextColor}"
+                />
+            
+            <Entry 
+                x:Name="passwordEntry"
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}" 
+                IsPassword="True"
+                />
         </VerticalStackLayout>
 
         <!-- Login Button -->
@@ -34,13 +54,16 @@
             Text="Log In" 
             BackgroundColor="{StaticResource ButtonColor}" 
             TextColor="{StaticResource TextColor}" 
-            Clicked="loginButton_Clicked"/>
+            Clicked="loginButton_Clicked"
+            />
 
-        <!-- Sign Up Navigation -->
-        <Label 
+        <!-- Sign up Button -->
+        <Button 
             Text="Sign up instead?" 
+            BackgroundColor="Transparent" 
             TextColor="{StaticResource TextColor}" 
             HorizontalOptions="Center"
             />
+        
     </VerticalStackLayout>
 </ContentPage>
