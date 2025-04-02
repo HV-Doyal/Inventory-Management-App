@@ -2,11 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UndergradProject.Pages.EditItemPage"
-             Title="EditItemPage">
-    <VerticalStackLayout>
+             Title="EditItemPage"
+             BackgroundColor="{StaticResource BgColor}">
+    <VerticalStackLayout 
+        Padding="20" 
+        Spacing="15"
+        VerticalOptions="Center">
+
+        <!-- Title -->
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Edit Item" 
+            FontSize="24" 
+            TextColor="White" 
+            HorizontalOptions="Center"/>
+
+        <!-- Barcode Scanner -->
+        <VerticalStackLayout>
+            <Label Text="Barcode" TextColor="White"/>
+            <Button 
+                Text="Scan" 
+                BackgroundColor="DarkGray" 
+                TextColor="White" 
+                />
+        </VerticalStackLayout>
+
+        <!-- Item Name Picker -->
+        <VerticalStackLayout>
+            <Label Text="Item Name" TextColor="White"/>
+            <Picker x:Name="itemNamePicker" BackgroundColor="DarkGray" TextColor="White"/>
+        </VerticalStackLayout>
+
+        <!-- Quantity & Price Entries -->
+        <HorizontalStackLayout Spacing="10">
+            <VerticalStackLayout>
+                <Label Text="Quantity" TextColor="White"/>
+                <Entry x:Name="quantityEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Price" TextColor="White"/>
+                <Entry x:Name="priceEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Category Picker -->
+        <VerticalStackLayout>
+            <Label Text="Category" TextColor="White"/>
+            <Picker x:Name="categoryPicker" BackgroundColor="DarkGray" TextColor="White"/>
+        </VerticalStackLayout>
+
+        <!-- Apply Changes Button -->
+        <Button 
+            Text="Apply Changes" 
+            BackgroundColor="DarkGray" 
+            TextColor="White" 
+            />
     </VerticalStackLayout>
 </ContentPage>
