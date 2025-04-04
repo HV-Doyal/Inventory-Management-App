@@ -37,6 +37,8 @@
 
         <!-- Sign Up Button -->
         <Button 
+            x:Name="signupButton"
+            Clicked="signupButton_Clicked"
             Text="Sign up" 
             BackgroundColor="{StaticResource ButtonColor}" 
             TextColor="{StaticResource TextColor}" 
