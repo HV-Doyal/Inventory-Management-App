@@ -35,4 +35,9 @@ public partial class Dashboard : ContentPage
     {
 
     }
+
+    private async void logoutButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
+    }
 }

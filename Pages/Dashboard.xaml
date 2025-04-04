@@ -61,17 +61,10 @@
                         Grid.Row="0"
                         Grid.Column="1"/>
 
-                    <!-- Edit Profile Button -->
-                    <Button 
-                        Text="Edit Profile" 
-                        BackgroundColor="Transparent" 
-                        TextColor="{StaticResource TextColor}" 
-                        HorizontalOptions="Start"
-                        Grid.Row="1"
-                        Grid.Column="0"/>
-
                     <!-- Log Out Button -->
                     <Button 
+                        x:Name="logoutButton"
+                        Clicked="logoutButton_Clicked"
                         Text="Log Out" 
                         BackgroundColor="Transparent" 
                         TextColor="{StaticResource TextColor}" 
