@@ -10,7 +10,7 @@ namespace UndergradProject.Business_Logic_Layer
     public class UserMangement
     {
         DatabaseService databaseUserService = new DatabaseService(Constants.databasePath);
-
+        Validation validation = new Validation();
         //Initialise the table in the databse
         public async Task initialiseUsersTable()
         {
@@ -27,7 +27,9 @@ namespace UndergradProject.Business_Logic_Layer
 
         public async Task<bool> createUser(string username, string email, string password)
         {
-            User user = new User(username, email, password);
+            string hashedPassword = validation.HashPassword(password);
+
+            User user = new User(username, email, hashedPassword);
             Console.WriteLine("User created successfully!");
             Console.WriteLine($"UserID: {user.userId}, Username: {user.Username}, Email: {user.Email}, Password: {user.Password}");
            
@@ -65,6 +67,37 @@ namespace UndergradProject.Business_Logic_Layer
             return users.Any(u =>
                 string.Equals(u.Email, user.Email, StringComparison.OrdinalIgnoreCase) &&
                 string.Equals(u.Username, user.Username, StringComparison.OrdinalIgnoreCase));
+        }
+
+        //Checks if account is valid
+        public async Task<bool> isAccountValid(string username, string enteredPassword)
+        {
+            var users = await getAllUsersFromDatabase();
+
+            // Find the user by username
+            var existingUser = users.FirstOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase));
+
+            if (existingUser != null)
+            {
+                // Verify the entered password against the stored hashed password
+                bool isPasswordValid = validation.VerifyPassword(enteredPassword, existingUser.Password);
+
+                return isPasswordValid;
+            }
+
+            // Return false if no user is found with the provided username
+            return false;
+        }
+
+        //print users table 
+        public async void printUsersTable()
+        {
+            List<User> users = await databaseUserService.GetDataAsync<User>();
+
+            foreach (var u in users)
+            {
+                Console.WriteLine($"UserID: {u.userId}, Username: {u.Username}, Email: {u.Email}, Password: {u.Password}");
+            }
         }
     }
 }
