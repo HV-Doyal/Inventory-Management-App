@@ -10,7 +10,7 @@ public partial class SignupPage : ContentPage
 		InitializeComponent();
     }
 
-    private void signupButton_Clicked(object sender, EventArgs e)
+    private async void signupButton_Clicked(object sender, EventArgs e)
     {
         string username = usernameEntry.Text?.Trim();
         string email = emailEntry.Text?.Trim();
@@ -51,19 +51,27 @@ public partial class SignupPage : ContentPage
         if (isValid)
         {
             UserMangement userMangement = new UserMangement();
-            userMangement.createUser(username, email, password);
+            bool isUserCreationSuccess = await userMangement.createUser(username, email, password);
 
-            // Show success prompt
-            DisplayAlert("Success", "User created successfully!", "OK");
+            if (!isUserCreationSuccess)
+            {
+                // Show error prompt
+                await DisplayAlert("Error", "User already exists!", "OK");
+                return;
+            }
+            else
+            {
+                // Show success prompt
+                DisplayAlert("Success", "User created successfully!", "OK");
 
-            // Clear the entries
-            usernameEntry.Text = string.Empty;
-            emailEntry.Text = string.Empty;
-            passwordEntry.Text = string.Empty;
+                // Clear the entries
+                usernameEntry.Text = string.Empty;
+                emailEntry.Text = string.Empty;
+                passwordEntry.Text = string.Empty;
 
-            // TODO: Navigate to login page
-            // e.g., Application.Current.MainPage = new LoginPage();
-
+                // TODO: Navigate to login page
+                // e.g., Application.Current.MainPage = new LoginPage();
+            }
         }
         else
         {
