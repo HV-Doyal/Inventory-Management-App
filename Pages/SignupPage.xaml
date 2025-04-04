@@ -46,6 +46,8 @@
 
         <!-- Log In Navigation -->
         <Button 
+            x:Name="loginInsteadButton"
+            Clicked="loginInsteadButton_Clicked"
             Text="Login instead?" 
             BackgroundColor="Transparent" 
             TextColor="{StaticResource TextColor}" 

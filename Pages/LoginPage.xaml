@@ -59,6 +59,8 @@
 
         <!-- Sign up Button -->
         <Button 
+            x:Name="signupInsteadButton"
+            Clicked="signupInsteadButton_Clicked"
             Text="Sign up instead?" 
             BackgroundColor="Transparent" 
             TextColor="{StaticResource TextColor}" 

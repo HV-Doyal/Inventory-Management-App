@@ -62,15 +62,15 @@ public partial class SignupPage : ContentPage
             else
             {
                 // Show success prompt
-                DisplayAlert("Success", "User created successfully!", "OK");
+                await DisplayAlert("Success", "User created successfully!", "OK");
 
                 // Clear the entries
                 usernameEntry.Text = string.Empty;
                 emailEntry.Text = string.Empty;
                 passwordEntry.Text = string.Empty;
 
-                // TODO: Navigate to login page
-                // e.g., Application.Current.MainPage = new LoginPage();
+                //Navigate to login page
+                await Navigation.PopModalAsync();
             }
         }
         else
@@ -92,7 +92,12 @@ public partial class SignupPage : ContentPage
             }
 
             string message = "Invalid entries: " + string.Join(", ", invalidFields);
-            DisplayAlert("Validation Error", message, "OK");
+            await DisplayAlert("Validation Error", message, "OK");
         }
+    }
+
+    private async void loginInsteadButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopModalAsync();
     }
 }
