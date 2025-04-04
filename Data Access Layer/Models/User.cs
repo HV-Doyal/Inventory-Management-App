@@ -22,6 +22,9 @@ namespace UndergradProject.Data_Access_Layer
         [MaxLength(100)]
         public string Password { get; set; }
 
+        //Parameterless constructor
+        public User() { }
+
         // Constructor
         public User(string username, string email, string password)
         {
