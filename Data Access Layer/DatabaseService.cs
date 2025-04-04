@@ -37,4 +37,11 @@ public class DatabaseService
         return data;
     }
 
+    // Drops the table corresponding to the type T
+    public async Task DropTableAsync<T>() where T : new()
+    {
+        // Execute a raw SQL command to drop the table for the given type T
+        await _database.ExecuteAsync($"DROP TABLE IF EXISTS {typeof(T).Name}");
+        Console.WriteLine("Table dropped successfully.");
+    }
 }
