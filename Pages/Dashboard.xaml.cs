@@ -5,7 +5,11 @@ public partial class Dashboard : ContentPage
 	public Dashboard()
 	{
 		InitializeComponent();
-	}
+
+        // Set the Label's Text property to "Welcome, [username]"
+        string savedUsername = Preferences.Get("username", "Guest");
+        welcomeLabel.Text = $"Welcome, {savedUsername}";
+    }
 
     private void inventoryButton_Clicked(object sender, EventArgs e)
     {

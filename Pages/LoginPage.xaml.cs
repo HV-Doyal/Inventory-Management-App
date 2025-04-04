@@ -3,6 +3,7 @@ using UndergradProject.Business_Logic_Layer;
 using UndergradProject.Data_Access_Layer;
 using System.Threading.Tasks;
 namespace UndergradProject;
+using Microsoft.Maui.Storage;
 
 public partial class LoginPage : ContentPage
 {
@@ -29,6 +30,7 @@ public partial class LoginPage : ContentPage
 
         if (await userMangement.isAccountValid(username, password))
         {
+            Preferences.Set("username", username);
             await DisplayAlert("Success", "Login successful!", "OK");
             await Navigation.PushModalAsync(new Dashboard());
         }
