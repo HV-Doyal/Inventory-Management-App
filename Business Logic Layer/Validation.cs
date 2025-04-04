@@ -8,16 +8,21 @@ namespace UndergradProject.Business_Logic_Layer
 {
     public class Validation
     {
-        public bool validateEmail(string email)
+        public bool isEmailValid(string email)
         {
             // Simple email validation logic
             return email.Contains("@") && email.Contains(".");
         }
 
-        public bool validatePassword(string password)
+        public bool isPasswordValid(string password)
         {
             // Simple password validation logic
             return password.Length >= 8 && password.Any(char.IsDigit) && password.Any(char.IsLetter);
+        }
+
+        public bool isNull(string text)
+        {
+            return string.IsNullOrWhiteSpace(text);
         }
     }
 }
