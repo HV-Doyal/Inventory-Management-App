@@ -11,29 +11,29 @@ public partial class Dashboard : ContentPage
         welcomeLabel.Text = $"Welcome, {savedUsername}";
     }
 
-    private void inventoryButton_Clicked(object sender, EventArgs e)
+    private async void inventoryButton_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushModalAsync(new InventoryPage());
     }
 
-    private void analyticsButton_Clicked(object sender, EventArgs e)
+    private async void analyticsButton_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushModalAsync(new AnalyticsPage());
     }
 
-    private void checkoutButton_Clicked(object sender, EventArgs e)
+    private async void checkoutButton_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushModalAsync(new CheckoutPage());
     }
 
-    private void addItem_Clicked(object sender, EventArgs e)
+    private async void addItem_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushModalAsync(new AddItemPage());
     }
 
-    private void editItem_Clicked(object sender, EventArgs e)
+    private async void editItem_Clicked(object sender, EventArgs e)
     {
-
+        await Navigation.PushModalAsync(new EditItemPage());
     }
 
     private async void logoutButton_Clicked(object sender, EventArgs e)
