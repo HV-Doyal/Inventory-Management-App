@@ -6,4 +6,14 @@ public partial class AddItemPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void scanButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    private void addItemButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
