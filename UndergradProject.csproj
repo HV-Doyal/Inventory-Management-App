@@ -67,10 +67,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\CheckoutAddItemPage.xaml.cs">
+	    <DependentUpon>CheckoutAddItemPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\AddItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\AnalyticsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CheckoutAddItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\CheckoutPage.xaml">

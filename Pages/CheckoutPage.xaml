@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UndergradProject.Pages.CheckoutPage"
-             Title="CheckoutPage">
-    <VerticalStackLayout>
+             x:Class="UndergradProject.Pages.CheckoutPage">
+    <VerticalStackLayout 
+        Padding="20" 
+        Spacing="15">
+
+        <!-- Title -->
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Checkout" 
+            FontSize="24" 
+            TextColor="White" 
+            HorizontalOptions="Center"/>
+
+        <!-- Barcode / Add Manually -->
+        <HorizontalStackLayout 
+            HorizontalOptions="Center" 
+            Spacing="20">
+            <VerticalStackLayout>
+                <Label Text="Barcode" TextColor="White" HorizontalOptions="Center"/>
+                <Button 
+                    Text="Scan" 
+                    BackgroundColor="DarkGray" 
+                    TextColor="White" 
+                    />
+            </VerticalStackLayout>
+
+            <Label Text="OR" TextColor="White" VerticalOptions="Center"/>
+
+            <VerticalStackLayout>
+                <Label Text="Add manually" TextColor="White" HorizontalOptions="Center"/>
+                <Button 
+                    x:Name="addButton"
+                    Clicked="addButton_Clicked"
+                    Text="Add" 
+                    BackgroundColor="DarkGray" 
+                    TextColor="White" 
+                    />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Table Grid -->
+        <Grid ColumnDefinitions="*,*,*" RowSpacing="1" Padding="0">
+            <!-- Headers -->
+            <Label Text="Name" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="0"/>
+            <Label Text="Quantity" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="1"/>
+            <Label Text="Price" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="2"/>
+
+            <!-- Dynamic content to be filled in code-behind or via binding -->
+            <!-- For example:
+            <CollectionView ItemsSource="{Binding CartItems}">
+                ...
+            </CollectionView> -->
+        </Grid>
+
+        <!-- Total Price Display -->
+        <HorizontalStackLayout HorizontalOptions="Fill">
+            <Label Text="Total Price" TextColor="White" FontAttributes="Bold" />
+            <Label x:Name="totalPriceLabel" Text="9999" TextColor="White" FontAttributes="Bold" />
+        </HorizontalStackLayout>
+
+        <!-- Checkout Button -->
+        <Button 
+            Text="Checkout" 
+            BackgroundColor="DarkGray" 
+            TextColor="White" 
+            HorizontalOptions="Center"/>
+
     </VerticalStackLayout>
 </ContentPage>

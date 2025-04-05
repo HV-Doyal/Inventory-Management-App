@@ -6,4 +6,9 @@ public partial class CheckoutPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void addButton_Clicked(object sender, EventArgs e)
+    {
+		await Navigation.PushModalAsync(new CheckoutAddItem());
+    }
 }
