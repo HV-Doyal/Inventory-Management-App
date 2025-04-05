@@ -2,30 +2,85 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UndergradProject.Pages.CheckoutAddItem"
-             Title="CheckoutAddItem">
-    <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
-        <Label Text="Item Name" TextColor="White"/>
-        <Entry x:Name="itemNameEntry" BackgroundColor="DarkGray" TextColor="White"/>
+             BackgroundColor="{StaticResource BgColor}">
+    
+    <VerticalStackLayout 
+        Padding="20" 
+        Spacing="15" 
+        VerticalOptions="Center"
+        Margin="0,0,0,50">
+
+        <Label 
+            Text="Add Item To Checkout List" 
+            FontSize="26"
+            TextColor="{StaticResource TextColor}" 
+            HorizontalOptions ="Center"
+            Margin="0,0,0,50" 
+            />
+        
+        <Label 
+            Text="Item Name" 
+            TextColor="{StaticResource TextColor}"
+            />
+        
+        <Entry 
+            x:Name="itemNameEntry" 
+            BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}"
+            />
 
         <HorizontalStackLayout Spacing="10">
             <VerticalStackLayout>
-                <Label Text="Quantity" TextColor="White"/>
-                <Entry x:Name="manualQuantityEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+                <Label 
+                    Text="Quantity" 
+                    TextColor="{StaticResource TextColor}"
+                    />
+
+                <Entry 
+                    x:Name="manualQuantityEntry" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
+                    Keyboard="Numeric"
+                    />
             </VerticalStackLayout>
 
             <VerticalStackLayout>
-                <Label Text="Unit Price" TextColor="White"/>
-                <Entry x:Name="manualPriceEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+                <Label 
+                    Text="Unit Price" 
+                    TextColor="{StaticResource TextColor}"
+                    />
+                
+                <Entry 
+                    x:Name="manualPriceEntry" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
+                    Keyboard="Numeric"
+                    />
+                
             </VerticalStackLayout>
         </HorizontalStackLayout>
+        
+        <HorizontalStackLayout 
+            VerticalOptions="Center" 
+            Spacing="5">
+            
+            <CheckBox 
+                x:Name="matchWithInventoryCheckbox" 
+                VerticalOptions="Center"
+                />
 
-        <CheckBox x:Name="matchWithInventoryCheckbox"/>
-        <Label Text="Match with existing in inventory" TextColor="White"/>
+            <Label 
+                Text="Match with existing in inventory" 
+                TextColor="{StaticResource TextColor}"
+                VerticalOptions="Center"
+                />
+        </HorizontalStackLayout>
 
         <Button 
             Text="Add Item" 
-            BackgroundColor="DarkGray" 
-            TextColor="White" 
+            BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}" 
             />
+        
     </VerticalStackLayout>
 </ContentPage>

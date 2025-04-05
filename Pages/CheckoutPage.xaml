@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UndergradProject.Pages.CheckoutPage">
+             x:Class="UndergradProject.Pages.CheckoutPage"
+             BackgroundColor="{StaticResource BgColor}">
+    
     <VerticalStackLayout 
         Padding="20" 
         Spacing="15">
@@ -10,42 +12,56 @@
         <Label 
             Text="Checkout" 
             FontSize="24" 
-            TextColor="White" 
+            TextColor="{StaticResource TextColor}" 
             HorizontalOptions="Center"/>
 
         <!-- Barcode / Add Manually -->
         <HorizontalStackLayout 
             HorizontalOptions="Center" 
             Spacing="20">
+            
             <VerticalStackLayout>
-                <Label Text="Barcode" TextColor="White" HorizontalOptions="Center"/>
+                <Label 
+                    Text="Barcode" 
+                    TextColor="{StaticResource TextColor}" 
+                    HorizontalOptions="Center"/>
+                
                 <Button 
                     Text="Scan" 
-                    BackgroundColor="DarkGray" 
-                    TextColor="White" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
                     />
+                
             </VerticalStackLayout>
 
-            <Label Text="OR" TextColor="White" VerticalOptions="Center"/>
+            <Label 
+                Text="OR" 
+                TextColor="{StaticResource TextColor}" 
+                VerticalOptions="Center"/>
 
             <VerticalStackLayout>
-                <Label Text="Add manually" TextColor="White" HorizontalOptions="Center"/>
+                <Label 
+                    Text="Add manually" 
+                    TextColor="{StaticResource TextColor}" 
+                    HorizontalOptions="Center"/>
+                
                 <Button 
                     x:Name="addButton"
                     Clicked="addButton_Clicked"
                     Text="Add" 
-                    BackgroundColor="DarkGray" 
-                    TextColor="White" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
                     />
+                
             </VerticalStackLayout>
         </HorizontalStackLayout>
 
         <!-- Table Grid -->
         <Grid ColumnDefinitions="*,*,*" RowSpacing="1" Padding="0">
             <!-- Headers -->
-            <Label Text="Name" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="0"/>
-            <Label Text="Quantity" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="1"/>
-            <Label Text="Price" TextColor="White" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="2"/>
+            <Label Text="Name" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="0"/>
+            <Label Text="Quantity" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="1"/>
+            <Label Text="Price" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="2"/>
 
             <!-- Dynamic content to be filled in code-behind or via binding -->
             <!-- For example:
@@ -56,15 +72,15 @@
 
         <!-- Total Price Display -->
         <HorizontalStackLayout HorizontalOptions="Fill">
-            <Label Text="Total Price" TextColor="White" FontAttributes="Bold" />
-            <Label x:Name="totalPriceLabel" Text="9999" TextColor="White" FontAttributes="Bold" />
+            <Label Text="Total Price" TextColor="{StaticResource TextColor}" FontAttributes="Bold" />
+            <Label x:Name="totalPriceLabel" Text="9999" TextColor="{StaticResource TextColor}" FontAttributes="Bold" />
         </HorizontalStackLayout>
 
         <!-- Checkout Button -->
         <Button 
             Text="Checkout" 
-            BackgroundColor="DarkGray" 
-            TextColor="White" 
+            BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}" 
             HorizontalOptions="Center"/>
 
     </VerticalStackLayout>
