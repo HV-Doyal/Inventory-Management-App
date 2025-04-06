@@ -13,14 +13,6 @@
             BarcodesDetected="barcodeReader_BarcodesDetected_1"
              />
         
-        <!-- Result label for scanned barcode -->
-        <Label 
-            x:Name="resultLabel"
-            Text="Scan a barcode..."
-            FontSize="18"
-            HorizontalOptions="Center"
-            VerticalOptions="Center" />
-
     </VerticalStackLayout>
 
 </ContentPage>

@@ -5,9 +5,12 @@ namespace UndergradProject.Pages;
 
 public partial class BarcodeScannerPage : ContentPage
 {
-    public BarcodeScannerPage()
+    private readonly Action<string> _onBarcodeScanned;
+
+    public BarcodeScannerPage(Action<string> onBarcodeScanned)
     {
         InitializeComponent();
+        _onBarcodeScanned = onBarcodeScanned;
         CheckCameraPermissions();
 
         barcodeReader.Options = new ZXing.Net.Maui.BarcodeReaderOptions
@@ -17,13 +20,6 @@ public partial class BarcodeScannerPage : ContentPage
             TryHarder = true,
             Multiple = true
         };
-
-    }
-
-    // Handle Barcode Detected
-    private async void barcodeReader_BarcodesDetected(object sender, BarcodeDetectionEventArgs e)
-    {
-        await Navigation.PopModalAsync();
     }
 
     // Handle Camera Permissions
@@ -43,17 +39,15 @@ public partial class BarcodeScannerPage : ContentPage
 
     private void barcodeReader_BarcodesDetected_1(object sender, BarcodeDetectionEventArgs e)
     {
+        barcodeReader.IsDetecting = false;
         var first = e.Results.FirstOrDefault();
         if (first is null)
             return;
 
         Dispatcher.DispatchAsync(async () =>
         {
-            await DisplayAlert("Barcode Detected", first.Value, "OK");
-            // Stop scanning after the first barcode is detected
-            barcodeReader.IsDetecting = false;
-            await Navigation.PopModalAsync();
+            _onBarcodeScanned?.Invoke(first.Value); // Send barcode back
+            await Navigation.PopModalAsync(); // Close scanner
         });
-        
     }
 }
