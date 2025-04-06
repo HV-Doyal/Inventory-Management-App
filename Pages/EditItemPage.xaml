@@ -21,7 +21,16 @@
             <Label 
                 Text="Barcode" 
                 TextColor="{StaticResource TextColor}"/>
+            
+            <Label 
+             x:Name="barcodeStatusLabel"
+             Text="No Barcode" 
+             FontSize="12"
+             TextColor="IndianRed"/>
+            
             <Button 
+                x:Name="scanButton"
+                Clicked="scanButton_Clicked"
                 Text="Scan" 
                 BackgroundColor="{StaticResource ButtonColor}" 
                 TextColor="{StaticResource TextColor}" 
@@ -33,8 +42,8 @@
             <Label 
                 Text="Item Name" 
                 TextColor="{StaticResource TextColor}"/>
-            <Picker 
-                x:Name="itemNamePicker" 
+            <Entry 
+                x:Name="itemNameEntry" 
                 BackgroundColor="{StaticResource ButtonColor}" 
                 TextColor="{StaticResource TextColor}"/>
         </VerticalStackLayout>
@@ -72,11 +81,14 @@
             <Picker 
                 x:Name="categoryPicker" 
                 BackgroundColor="{StaticResource ButtonColor}" 
-                TextColor="{StaticResource TextColor}"/>
+                TextColor="{StaticResource TextColor}"
+                 ItemsSource="{StaticResource CategoryList}"/>
         </VerticalStackLayout>
 
         <!-- Apply Changes Button -->
         <Button 
+            x:Name="applyChangesButton"
+            Clicked="applyChangesButton_Clicked"
             Text="Apply Changes" 
             BackgroundColor="{StaticResource ButtonColor}" 
             TextColor="{StaticResource TextColor}" 
