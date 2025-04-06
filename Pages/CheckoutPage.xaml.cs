@@ -7,6 +7,7 @@ public partial class CheckoutPage : ContentPage
 {
     int row = 0;
     List<Sale> currentSales = new List<Sale>(); // Track sales
+    decimal totalPrice = 0;
 
     public CheckoutPage()
     {
@@ -14,9 +15,20 @@ public partial class CheckoutPage : ContentPage
         initialiseGrid();
     }
 
+    private void updateTotalPrice()
+    {
+        foreach(Sale sale in currentSales)
+        {
+            totalPrice += sale.totalPrice;
+        }
+
+        totalPriceLabel.Text = $"Total Price: {totalPrice}";
+    }
+
     private async void addButton_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushModalAsync(new CheckoutAddItem(onAddButtonClicked));
+        updateTotalPrice();
     }
 
     private void onAddButtonClicked(Sale sale)
@@ -99,56 +111,57 @@ public partial class CheckoutPage : ContentPage
     }
 
     private void addOrUpdateSaleInGrid(Sale newSale)
-{
-    var existingSale = currentSales.FirstOrDefault(s => s.name == newSale.name && s.unitPrice == newSale.unitPrice);
-
-    if (existingSale != null)
     {
-        existingSale.quantity++;
+        var existingSale = currentSales.FirstOrDefault(s => s.name == newSale.name && s.unitPrice == newSale.unitPrice);
 
-        int existingRowIndex = currentSales.IndexOf(existingSale) + 1; // +1 due to header row
-
-        foreach (var child in checkoutGrid.Children)
+        if (existingSale != null)
         {
-            if (checkoutGrid.GetRow(child) == existingRowIndex)
-                {
-                int col = checkoutGrid.GetColumn(child);
+            existingSale.quantity++;
 
-                if (col == 1 && child is Label quantityLabel)
-                    quantityLabel.Text = existingSale.quantity.ToString();
+            int existingRowIndex = currentSales.IndexOf(existingSale) + 1; // +1 due to header row
 
-                if (col == 3 && child is Label totalPriceLabel)
-                    totalPriceLabel.Text = existingSale.totalPrice.ToString("C");
+            foreach (var child in checkoutGrid.Children)
+            {
+                if (checkoutGrid.GetRow(child) == existingRowIndex)
+                    {
+                    int col = checkoutGrid.GetColumn(child);
+
+                    if (col == 1 && child is Label quantityLabel)
+                        quantityLabel.Text = existingSale.quantity.ToString();
+
+                    if (col == 3 && child is Label totalPriceLabel)
+                        totalPriceLabel.Text = existingSale.totalPrice.ToString("C");
+                }
             }
         }
+        else
+        {
+            currentSales.Add(newSale);
+            row++;
+            checkoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60) });
+
+            var nameLabel = CreateLabel(newSale.name);
+            checkoutGrid.Children.Add(nameLabel);
+            Grid.SetRow(nameLabel, row);
+            Grid.SetColumn(nameLabel, 0);
+
+            var quantityLabel = CreateLabel(newSale.quantity.ToString());
+            checkoutGrid.Children.Add(quantityLabel);
+            Grid.SetRow(quantityLabel, row);
+            Grid.SetColumn(quantityLabel, 1);
+
+            var unitPriceLabel = CreateLabel(newSale.unitPrice.ToString("C"));
+            checkoutGrid.Children.Add(unitPriceLabel);
+            Grid.SetRow(unitPriceLabel, row);
+            Grid.SetColumn(unitPriceLabel, 2);
+
+            var totalPriceLabel = CreateLabel(newSale.totalPrice.ToString("C"));
+            checkoutGrid.Children.Add(totalPriceLabel);
+            Grid.SetRow(totalPriceLabel, row);
+            Grid.SetColumn(totalPriceLabel, 3);
+        }
+        updateTotalPrice();
     }
-    else
-    {
-        currentSales.Add(newSale);
-        row++;
-        checkoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(60) });
-
-        var nameLabel = CreateLabel(newSale.name);
-        checkoutGrid.Children.Add(nameLabel);
-        Grid.SetRow(nameLabel, row);
-        Grid.SetColumn(nameLabel, 0);
-
-        var quantityLabel = CreateLabel(newSale.quantity.ToString());
-        checkoutGrid.Children.Add(quantityLabel);
-        Grid.SetRow(quantityLabel, row);
-        Grid.SetColumn(quantityLabel, 1);
-
-        var unitPriceLabel = CreateLabel(newSale.unitPrice.ToString("C"));
-        checkoutGrid.Children.Add(unitPriceLabel);
-        Grid.SetRow(unitPriceLabel, row);
-        Grid.SetColumn(unitPriceLabel, 2);
-
-        var totalPriceLabel = CreateLabel(newSale.totalPrice.ToString("C"));
-        checkoutGrid.Children.Add(totalPriceLabel);
-        Grid.SetRow(totalPriceLabel, row);
-        Grid.SetColumn(totalPriceLabel, 3);
-    }
-}
 
 
     private Label CreateLabel(string text, bool isHeader = false)
