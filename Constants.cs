@@ -13,7 +13,9 @@ namespace UndergradProject
         public static readonly Color whiteColor = Color.FromArgb("#FFFFFF");
         public static readonly string usersTableName = "users";
         public static readonly string itemsTableName = "items";
+        public static readonly string salesTableName = "sales";
         public static readonly string usersDatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{usersTableName}.db3");
         public static readonly string itemsDatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{itemsTableName}.db3");
+        public static readonly string salesDatabasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{salesTableName}.db3");
     }
 }

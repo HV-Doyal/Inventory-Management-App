@@ -27,6 +27,8 @@
                     HorizontalOptions="Center"/>
                 
                 <Button 
+                    x:Name="scanBarcode"
+                    Clicked="scanBarcode_Clicked"
                     Text="Scan" 
                     BackgroundColor="{StaticResource ButtonColor}" 
                     TextColor="{StaticResource TextColor}" 
@@ -57,27 +59,30 @@
         </HorizontalStackLayout>
 
         <!-- Table Grid -->
-        <Grid ColumnDefinitions="*,*,*" RowSpacing="1" Padding="0">
-            <!-- Headers -->
-            <Label Text="Name" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="0"/>
-            <Label Text="Quantity" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="1"/>
-            <Label Text="Price" TextColor="{StaticResource TextColor}" BackgroundColor="Black" FontAttributes="Bold" Grid.Column="2"/>
-
-            <!-- Dynamic content to be filled in code-behind or via binding -->
-            <!-- For example:
-            <CollectionView ItemsSource="{Binding CartItems}">
-                ...
-            </CollectionView> -->
-        </Grid>
+        <ScrollView Grid.Row="1" Margin="10">
+            <Grid x:Name="checkoutGrid" 
+                  ColumnSpacing="10" 
+                  RowSpacing="10" 
+                  Padding="10"> 
+                <!-- Dynamic columns and rows populated in code-behind -->
+            </Grid>
+        </ScrollView>
 
         <!-- Total Price Display -->
         <HorizontalStackLayout HorizontalOptions="Fill">
-            <Label Text="Total Price" TextColor="{StaticResource TextColor}" FontAttributes="Bold" />
-            <Label x:Name="totalPriceLabel" Text="9999" TextColor="{StaticResource TextColor}" FontAttributes="Bold" />
+            <Label 
+                x:Name="totalPriceLabel"
+                Text="Total Price: 0000" 
+                TextColor="{StaticResource TextColor}" 
+                FontAttributes="Bold" 
+                />
+
         </HorizontalStackLayout>
 
         <!-- Checkout Button -->
         <Button 
+            x:Name="checkoutButton"
+            Clicked="checkoutButton_Clicked"
             Text="Checkout" 
             BackgroundColor="{StaticResource ButtonColor}" 
             TextColor="{StaticResource TextColor}" 
