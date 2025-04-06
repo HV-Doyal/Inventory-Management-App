@@ -44,4 +44,22 @@ public class DatabaseService
         await _database.ExecuteAsync($"DROP TABLE IF EXISTS {typeof(T).Name}");
         Console.WriteLine("Table dropped successfully.");
     }
+
+    public async Task UpdateDataAsync<T>(T data) where T : new()
+    {
+        await _database.UpdateAsync(data);
+        Console.WriteLine("Data updated successfully.");
+    }
+    //await db.UpdateDataAsync(category);
+    public async Task DeleteDataAsync<T>(T data) where T : new()
+    {
+        await _database.DeleteAsync(data);
+        Console.WriteLine("Data deleted successfully.");
+    }
+
+    public async Task<List<T>> QueryAsync<T>(string query, params object[] args) where T : new()
+    {
+        return await _database.QueryAsync<T>(query, args);
+    }
+    //var result = await dbService.QueryAsync<User>("SELECT * FROM User WHERE Age > ?", 18);
 }
