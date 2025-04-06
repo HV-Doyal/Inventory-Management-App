@@ -16,7 +16,13 @@ public partial class CheckoutPage : ContentPage
 
     private async void addButton_Clicked(object sender, EventArgs e)
     {
-        // Optional: manual item add logic
+        await Navigation.PushModalAsync(new CheckoutAddItem(onAddButtonClicked));
+    }
+
+    private void onAddButtonClicked(Sale sale)
+    {
+        sale.date = DateTime.Now.ToString();
+        addOrUpdateSaleInGrid(sale);
     }
 
     private async void scanBarcode_Clicked(object sender, EventArgs e)
@@ -94,7 +100,7 @@ public partial class CheckoutPage : ContentPage
 
     private void addOrUpdateSaleInGrid(Sale newSale)
 {
-    var existingSale = currentSales.FirstOrDefault(s => s.name == newSale.name);
+    var existingSale = currentSales.FirstOrDefault(s => s.name == newSale.name && s.unitPrice == newSale.unitPrice);
 
     if (existingSale != null)
     {

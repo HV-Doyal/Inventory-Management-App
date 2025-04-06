@@ -77,6 +77,8 @@
         </HorizontalStackLayout>
 
         <Button 
+            x:Name="addItemButton"
+            Clicked="addItemButton_Clicked"
             Text="Add Item" 
             BackgroundColor="{StaticResource ButtonColor}" 
             TextColor="{StaticResource TextColor}" 
