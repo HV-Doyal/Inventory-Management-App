@@ -30,7 +30,6 @@ public partial class LoginPage : ContentPage
 
         if (await userMangement.isAccountValid(username, password))
         {
-            Preferences.Set("username", username);
             usernameEntry.Text = string.Empty;
             passwordEntry.Text = string.Empty;
             await Navigation.PushModalAsync(new Dashboard());

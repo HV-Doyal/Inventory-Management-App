@@ -9,7 +9,7 @@ namespace UndergradProject.Business_Logic_Layer
 {
     public class UserMangement
     {
-        DatabaseService databaseUserService = new DatabaseService(Constants.databasePath);
+        DatabaseService databaseUserService = new DatabaseService(Constants.usersDatabasePath);
         Validation validation = new Validation();
         //Initialise the table in the databse
         public async Task initialiseUsersTable()
@@ -75,13 +75,13 @@ namespace UndergradProject.Business_Logic_Layer
             var users = await getAllUsersFromDatabase();
 
             // Find the user by username
-            var existingUser = users.FirstOrDefault(u => string.Equals(u.Username, username, StringComparison.OrdinalIgnoreCase));
+            var existingUser = users.FirstOrDefault(u => string.Equals(u.Email, username, StringComparison.OrdinalIgnoreCase));
 
             if (existingUser != null)
             {
                 // Verify the entered password against the stored hashed password
                 bool isPasswordValid = validation.VerifyPassword(enteredPassword, existingUser.Password);
-
+                Preferences.Set("username", existingUser.Username);
                 return isPasswordValid;
             }
 

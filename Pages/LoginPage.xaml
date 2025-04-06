@@ -21,7 +21,7 @@
         <!-- Username Entry -->
         <VerticalStackLayout>
             <Label 
-                Text="Username" 
+                Text="Email" 
                 TextColor="{StaticResource TextColor}"
                 />
             
