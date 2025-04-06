@@ -13,48 +13,73 @@
         <Label 
             Text="Edit Item" 
             FontSize="24" 
-            TextColor="White" 
+            TextColor="{StaticResource TextColor}" 
             HorizontalOptions="Center"/>
 
         <!-- Barcode Scanner -->
         <VerticalStackLayout>
-            <Label Text="Barcode" TextColor="White"/>
+            <Label 
+                Text="Barcode" 
+                TextColor="{StaticResource TextColor}"/>
             <Button 
                 Text="Scan" 
-                BackgroundColor="DarkGray" 
-                TextColor="White" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}" 
                 />
         </VerticalStackLayout>
 
         <!-- Item Name Picker -->
         <VerticalStackLayout>
-            <Label Text="Item Name" TextColor="White"/>
-            <Picker x:Name="itemNamePicker" BackgroundColor="DarkGray" TextColor="White"/>
+            <Label 
+                Text="Item Name" 
+                TextColor="{StaticResource TextColor}"/>
+            <Picker 
+                x:Name="itemNamePicker" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}"/>
         </VerticalStackLayout>
 
         <!-- Quantity & Price Entries -->
-        <HorizontalStackLayout Spacing="10">
+        <HorizontalStackLayout 
+            Spacing="10">
             <VerticalStackLayout>
-                <Label Text="Quantity" TextColor="White"/>
-                <Entry x:Name="quantityEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+                <Label 
+                    Text="Quantity" 
+                    TextColor="{StaticResource TextColor}"/>
+                <Entry 
+                    x:Name="quantityEntry" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}" 
+                    Keyboard="Numeric"/>
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <Label Text="Price" TextColor="White"/>
-                <Entry x:Name="priceEntry" BackgroundColor="DarkGray" TextColor="White" Keyboard="Numeric"/>
+                <Label 
+                    Text="Price" 
+                    TextColor="{StaticResource TextColor}"/>
+                <Entry 
+                    x:Name="priceEntry" 
+                    BackgroundColor="{StaticResource ButtonColor}" 
+                    TextColor="{StaticResource TextColor}"
+                    Keyboard="Numeric"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
 
         <!-- Category Picker -->
         <VerticalStackLayout>
-            <Label Text="Category" TextColor="White"/>
-            <Picker x:Name="categoryPicker" BackgroundColor="DarkGray" TextColor="White"/>
+            <Label 
+                Text="Category" 
+                TextColor="{StaticResource TextColor}"/>
+            <Picker 
+                x:Name="categoryPicker" 
+                BackgroundColor="{StaticResource ButtonColor}" 
+                TextColor="{StaticResource TextColor}"/>
         </VerticalStackLayout>
 
         <!-- Apply Changes Button -->
         <Button 
             Text="Apply Changes" 
-            BackgroundColor="DarkGray" 
-            TextColor="White" 
+            BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}" 
             />
     </VerticalStackLayout>
 </ContentPage>

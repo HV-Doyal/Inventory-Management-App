@@ -9,7 +9,9 @@ public partial class AddItemPage : ContentPage
 	public AddItemPage()
 	{
 		InitializeComponent();
-	}
+        ItemMangement itemMangement = new ItemMangement();
+        //itemMangement.getAllItemsFromDatabase();
+    }
 
     private async void scanButton_Clicked(object sender, EventArgs e)
     {
