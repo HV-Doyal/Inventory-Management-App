@@ -1,64 +1,65 @@
+using UndergradProject.Business_Logic_Layer;
 using UndergradProject.Data_Access_Layer;
+using UndergradProject.Data_Access_Layer.Models;
 
 namespace UndergradProject.Pages;
 
 public partial class InventoryPage : ContentPage
 {
-    DatabaseService _databaseService = new DatabaseService(Constants.databasePath);
     public InventoryPage()
     {
         InitializeComponent();
 
-        LoadUsers();
+        LoadItems();
     }
 
-    private async void LoadUsers()
+    private async void LoadItems()
     {
+        ItemMangement itemMangement = new ItemMangement();
         try
         {
-            await _databaseService.CreateTableAsync<User>();
-            var users = await _databaseService.GetDataAsync<User>();
+            var items = await itemMangement.getAllItemsFromDatabase();
 
             // Clear out any existing rows/children
             InventoryGrid.Children.Clear();
             InventoryGrid.RowDefinitions.Clear();
-
             InventoryGrid.ColumnDefinitions.Clear();
-            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // ID
-            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Username
-            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Email
-            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Role
 
+            // Define the columns for the Item grid
+            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }); // Name
+            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) }); // Category
+            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Quantity
+            InventoryGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Unit Price
 
             int row = 0;
 
             // Add row for headers
             InventoryGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-            // Add headers
-            var headerId = CreateLabel("ID", true);
-            InventoryGrid.Children.Add(headerId);
-            Grid.SetRow(headerId, row);
-            Grid.SetColumn(headerId, 0);
+            // Add headers for each column
 
-            var headerUsername = CreateLabel("Username", true);
-            InventoryGrid.Children.Add(headerUsername);
-            Grid.SetRow(headerUsername, row);
-            Grid.SetColumn(headerUsername, 1);
+            var headerName = CreateLabel("Name", true);
+            InventoryGrid.Children.Add(headerName);
+            Grid.SetRow(headerName, row);
+            Grid.SetColumn(headerName, 0);
 
-            var headerEmail = CreateLabel("Email", true);
-            InventoryGrid.Children.Add(headerEmail);
-            Grid.SetRow(headerEmail, row);
-            Grid.SetColumn(headerEmail, 2);
+            var headerCategory = CreateLabel("Category", true);
+            InventoryGrid.Children.Add(headerCategory);
+            Grid.SetRow(headerCategory, row);
+            Grid.SetColumn(headerCategory, 1);
 
-            var headerRole = CreateLabel("Role", true);
-            InventoryGrid.Children.Add(headerRole);
-            Grid.SetRow(headerRole, row);
-            Grid.SetColumn(headerRole, 3);
+            var headerQuantity = CreateLabel("Quantity", true);
+            InventoryGrid.Children.Add(headerQuantity);
+            Grid.SetRow(headerQuantity, row);
+            Grid.SetColumn(headerQuantity, 2);
 
+            var headerUnitPrice = CreateLabel("Unit Price", true);
+            InventoryGrid.Children.Add(headerUnitPrice);
+            Grid.SetRow(headerUnitPrice, row);
+            Grid.SetColumn(headerUnitPrice, 3);
 
-            // Add user rows
-            foreach (var user in users)
+            // Add rows for each item
+            foreach (var item in items)
             {
                 row++;
                 InventoryGrid.RowDefinitions.Add(new RowDefinition
@@ -66,34 +67,34 @@ public partial class InventoryPage : ContentPage
                     Height = new GridLength(60),
                 });
 
-                // ID column
-                var idLabel = CreateLabel(user.userId.ToString());
-                InventoryGrid.Children.Add(idLabel);
-                Grid.SetRow(idLabel, row);
-                Grid.SetColumn(idLabel, 0);
+                // Name column
+                var nameLabel = CreateLabel(item.name);
+                InventoryGrid.Children.Add(nameLabel);
+                Grid.SetRow(nameLabel, row);
+                Grid.SetColumn(nameLabel, 0);
 
-                // Username column
-                var usernameLabel = CreateLabel(user.Username);
-                InventoryGrid.Children.Add(usernameLabel);
-                Grid.SetRow(usernameLabel, row);
-                Grid.SetColumn(usernameLabel, 1);
+                // Category column
+                var categoryLabel = CreateLabel(item.category);
+                InventoryGrid.Children.Add(categoryLabel);
+                Grid.SetRow(categoryLabel, row);
+                Grid.SetColumn(categoryLabel, 1);
 
-                // Email column
-                var emailLabel = CreateLabel(user.Email);
-                InventoryGrid.Children.Add(emailLabel);
-                Grid.SetRow(emailLabel, row);
-                Grid.SetColumn(emailLabel, 2);
+                // Quantity column
+                var quantityLabel = CreateLabel(item.quantity.ToString());
+                InventoryGrid.Children.Add(quantityLabel);
+                Grid.SetRow(quantityLabel, row);
+                Grid.SetColumn(quantityLabel, 2);
 
-                // Role column (assuming you have a Role property — if not, replace with something else)
-                var roleLabel = CreateLabel(user.Password); // or user.Password if you're using that for now
-                InventoryGrid.Children.Add(roleLabel);
-                Grid.SetRow(roleLabel, row);
-                Grid.SetColumn(roleLabel, 3);
+                // Unit Price column
+                var unitPriceLabel = CreateLabel(item.unitPrice.ToString("C"));
+                InventoryGrid.Children.Add(unitPriceLabel);
+                Grid.SetRow(unitPriceLabel, row);
+                Grid.SetColumn(unitPriceLabel, 3);
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error", $"Failed to load users: {ex.Message}", "OK");
+            await DisplayAlert("Error", $"Failed to load items: {ex.Message}", "OK");
         }
     }
 
