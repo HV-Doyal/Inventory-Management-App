@@ -23,13 +23,13 @@ namespace UndergradProject.Data_Access_Layer.Models
         public string barcode { get; set; }
 
         public int quantity { get; set; }
-        public double unitPrice { get; set; }
+        public decimal unitPrice { get; set; }
 
         // Parameterless constructor
         public Item() { }
 
         // Constructor without itemId
-        public Item(string name, string category, string barcode, int quantity, double unitPrice)
+        public Item(string name, string category, string barcode, int quantity, decimal unitPrice)
         {
             this.name = name;
             this.category = category;
