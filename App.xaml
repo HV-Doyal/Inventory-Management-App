@@ -12,6 +12,18 @@
             <Color x:Key="BgColor">#121212</Color>
             <Color x:Key="ButtonColor">#1E1D1D</Color>
             <Color x:Key="TextColor">#FFFFFF</Color>
+            <x:Array x:Key="CategoryList" Type="{x:Type x:String}">
+                <x:String>Drinks</x:String>
+                <x:String>Alcohol</x:String>
+                <x:String>Food</x:String>
+                <x:String>Fruit</x:String>
+                <x:String>Vegetable</x:String>
+                <x:String>Grocery</x:String>
+                <x:String>Snacks</x:String>
+                <x:String>Meat</x:String>
+                <x:String>Household</x:String>
+                <x:String>Other</x:String>
+            </x:Array>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

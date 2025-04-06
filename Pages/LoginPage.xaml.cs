@@ -37,7 +37,6 @@ public partial class LoginPage : ContentPage
         else
         {
             await DisplayAlert("Error", "Invalid username or password!", "OK");
-            usernameEntry.Text = string.Empty;
             passwordEntry.Text = string.Empty;
         }
     }
