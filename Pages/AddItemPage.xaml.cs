@@ -38,7 +38,7 @@ public partial class AddItemPage : ContentPage
         string itemName = itemNameEntry.Text?.Trim();
         if (itemName == null)
         {
-            DisplayAlert("Invalid Input", "Please enter a valid itemName.", "OK");
+            await DisplayAlert("Invalid Input", "Please enter a valid itemName.", "OK");
             itemNameEntry.BackgroundColor = Colors.Red;
             return;
         }
@@ -47,7 +47,7 @@ public partial class AddItemPage : ContentPage
         bool quantityParsed = int.TryParse(quantityEntry.Text?.Trim(), out int quantity);
         if (!quantityParsed)
         {
-            DisplayAlert("Invalid Input", "Please enter a valid quantity.", "OK");
+            await DisplayAlert("Invalid Input", "Please enter a valid quantity.", "OK");
             return;
         }
 
@@ -55,7 +55,7 @@ public partial class AddItemPage : ContentPage
         bool priceParsed = decimal.TryParse(priceEntry.Text?.Trim(), out decimal price);
         if (!priceParsed)
         {
-            DisplayAlert("Invalid Input", "Please enter a valid price.", "OK");
+            await DisplayAlert("Invalid Input", "Please enter a valid price.", "OK");
             return;
         }
 
@@ -63,7 +63,7 @@ public partial class AddItemPage : ContentPage
         string category = categoryPicker.SelectedItem?.ToString();
         if (string.IsNullOrWhiteSpace(category))
         {
-            DisplayAlert("Missing Category", "Please select a category.", "OK");
+            await DisplayAlert("Missing Category", "Please select a category.", "OK");
             return;
         }
 
