@@ -71,10 +71,40 @@ public partial class CheckoutPage : ContentPage
         addOrUpdateSaleInGrid(sale);
     }
 
-    private void checkoutButton_Clicked(object sender, EventArgs e)
+    private async void checkoutButton_Clicked(object sender, EventArgs e)
     {
-        // Checkout logic here
+        SaleManagement saleManagement = new SaleManagement();
+        ItemMangement itemMangement = new ItemMangement();
+        List<Item> items = await itemMangement.getAllItemsFromDatabase();
+
+        List<Item> updatedItems = new List<Item>(); // To store the updated items
+
+        foreach (Sale sale in currentSales)
+        {
+            // Add the sale to the database
+            await saleManagement.addSaleToDatabase(sale);
+
+            // Find the item that matches the sale's name and unitPrice
+            Item matchingItem = items.FirstOrDefault(item => item.name == sale.name && item.unitPrice == sale.unitPrice);
+
+            if (matchingItem != null)
+            {
+                // Decrease the quantity of the matching item by the sale's quantity
+                matchingItem.quantity -= sale.quantity;
+
+                // Add the updated item to the list
+                updatedItems.Add(matchingItem);
+            }
+        }
+        // After the loop, update the database with the new quantities
+        foreach (Item updatedItem in updatedItems)
+        {
+            await itemMangement.updataItemDB(updatedItem);
+        }
+        await DisplayAlert("Checkout Complete", $"The items have been successfully checked out and updated. {totalPriceLabel.Text}", "OK");
+        await Navigation.PopModalAsync();
     }
+
 
     private void initialiseGrid()
     {

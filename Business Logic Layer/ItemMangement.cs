@@ -69,5 +69,10 @@ namespace UndergradProject.Business_Logic_Layer
                 string.Equals(i.name, item.name, StringComparison.OrdinalIgnoreCase) &&
                 string.Equals(i.barcode, item.barcode, StringComparison.OrdinalIgnoreCase));
         }
+
+        public async Task updataItemDB(Item item)
+        {
+            await databaseItemService.UpdateDataAsync(item);
+        }
     }
 }
