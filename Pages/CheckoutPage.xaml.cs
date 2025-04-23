@@ -8,7 +8,6 @@ public partial class CheckoutPage : ContentPage
     int row = 0;
     List<Sale> currentSales = new List<Sale>(); // Track sales
     decimal totalPrice = 0;
-
     public CheckoutPage()
     {
         InitializeComponent();
@@ -33,7 +32,7 @@ public partial class CheckoutPage : ContentPage
 
     private void onAddButtonClicked(Sale sale)
     {
-        sale.date = DateTime.Now.ToString();
+        sale.date = DateTime.Now.ToString("M/d/yyyy");
         addOrUpdateSaleInGrid(sale);
     }
 
@@ -66,7 +65,7 @@ public partial class CheckoutPage : ContentPage
         }
 
         Item item = result.First();
-        Sale sale = new Sale(item.name, 1, item.category, item.unitPrice, DateTime.Now.ToString());
+        Sale sale = new Sale(item.name, 1, item.category, item.unitPrice, DateTime.Now.ToString("M/d/yyyy"));
 
         addOrUpdateSaleInGrid(sale);
     }

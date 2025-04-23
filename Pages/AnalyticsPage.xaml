@@ -5,8 +5,29 @@
              Title="AnalyticsPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            Text="Analytics and AI Insights"
+            FontSize="24"
+            HorizontalOptions="Center" 
+            Margin="0,20" />
+
+        <Button
+            x:Name="trainModelButton"
+            Text="Train Model"
+            Clicked="trainModelButton_Clicked"          
+            />
+
+        <Label
+            x:Name="statusLabel"
+            Text=""
+            FontSize="14"
+            HorizontalOptions="Center"
+            />
+
+        <Button
+            x:Name="predictButton"
+            Text="Predict"
+            Clicked="predictButton_Clicked"          
+            />
+
     </VerticalStackLayout>
 </ContentPage>
