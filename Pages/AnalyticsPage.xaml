@@ -2,31 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UndergradProject.Pages.AnalyticsPage"
+             BackgroundColor="{StaticResource BgColor}"
              Title="AnalyticsPage">
     <VerticalStackLayout>
         <Label 
             Text="Analytics and AI Insights"
             FontSize="24"
             HorizontalOptions="Center" 
+            TextColor="White"
             Margin="0,20" />
-
-        <Button
-            x:Name="trainModelButton"
-            Text="Train Model"
-            Clicked="trainModelButton_Clicked"          
-            />
 
         <Label
             x:Name="statusLabel"
             Text=""
             FontSize="14"
+            TextColor="White"
             HorizontalOptions="Center"
             />
 
         <Button
             x:Name="predictButton"
             Text="Predict"
-            Clicked="predictButton_Clicked"          
+            Clicked="predictButton_Clicked"     
+            BackgroundColor="{StaticResource ButtonColor}"
             />
 
     </VerticalStackLayout>
