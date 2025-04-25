@@ -83,7 +83,7 @@ public partial class EditItemPage : ContentPage
 
         ItemMangement itemMangement = new ItemMangement();
         await itemMangement.initialiseItemTable();
-        string query = $"SELECT * FROM Item WHERE Barcode = ?";
+        string query = $"SELECT * FROM Item WHERE Barcode = ? AND InventoryId = {LoginPage.currentInventoryID}";
         var result = await databaseItemService.QueryAsync<Item>(query, barcode);
 
         if (result == null)
