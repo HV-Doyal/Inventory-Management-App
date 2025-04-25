@@ -99,5 +99,27 @@ namespace UndergradProject.Business_Logic_Layer
                 Console.WriteLine($"UserID: {u.userId}, Username: {u.Username}, Email: {u.Email}, Password: {u.Password}");
             }
         }
+
+        public async Task<string> GetInventoryIDAsync(string username, string enteredPassword)
+        {
+            var users = await getAllUsersFromDatabase();
+            var existingUser = users.FirstOrDefault(u => string.Equals(u.Email, username, StringComparison.OrdinalIgnoreCase));
+
+            if (existingUser != null)
+            {
+                // Verify the entered password against the stored hashed password
+                bool isPasswordValid = validation.VerifyPassword(enteredPassword, existingUser.Password);
+
+                if (isPasswordValid)
+                {
+                    Preferences.Set("username", existingUser.Username);
+                    Preferences.Set("inventoryId", existingUser.InventoryId); 
+                    return existingUser.InventoryId;
+                }
+            }
+
+            // Return null if user not found or password invalid
+            return null;
+        }
     }
 }

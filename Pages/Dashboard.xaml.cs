@@ -13,6 +13,10 @@ public partial class Dashboard : ContentPage
 
     private async void inventoryButton_Clicked(object sender, EventArgs e)
     {
+        Console.WriteLine("public var:");
+        Console.WriteLine(LoginPage.currentInventoryID);
+        Console.WriteLine("Preference");
+        Console.WriteLine(Preferences.Get("inventoryId", string.Empty));
         await Navigation.PushModalAsync(new InventoryPage());
     }
 

@@ -25,17 +25,21 @@ namespace UndergradProject.Data_Access_Layer.Models
         public int quantity { get; set; }
         public decimal unitPrice { get; set; }
 
+        [MaxLength(10)]
+        public string InventoryId { get; set; }  // Reference to the inventory
+
         // Parameterless constructor
         public Item() { }
 
-        // Constructor without itemId
-        public Item(string name, string category, string barcode, int quantity, decimal unitPrice)
+        // Constructor with inventory reference
+        public Item(string name, string category, string barcode, int quantity, decimal unitPrice, string inventoryId)
         {
             this.name = name;
             this.category = category;
             this.barcode = barcode;
             this.quantity = quantity;
             this.unitPrice = unitPrice;
+            this.InventoryId = inventoryId;
         }
     }
 }

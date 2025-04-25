@@ -30,7 +30,8 @@ namespace UndergradProject.Business_Logic_Layer
         public async Task<bool> createItem(string itemName, string category, string barcode, int quantity, decimal unitPrice)
         {
             await initialiseItemTable();
-            Item item = new Item(itemName, category, barcode, quantity, unitPrice);
+            string currentInventoryID = Preferences.Get("inventoryId", string.Empty);
+            Item item = new Item(itemName, category, barcode, quantity, unitPrice, currentInventoryID);
             Console.WriteLine("Item created successfully!");
             Console.WriteLine($"ItemID: {item.itemId}, Name: {item.name}, Category: {item.category}, Barcode: {item.barcode}, Quantity: {item.quantity}, Unit Price: {item.unitPrice}");
 

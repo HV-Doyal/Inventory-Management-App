@@ -58,8 +58,13 @@ public partial class InventoryPage : ContentPage
             Grid.SetRow(headerUnitPrice, row);
             Grid.SetColumn(headerUnitPrice, 3);
 
+            string currentInventoryID = Preferences.Get("inventoryId", string.Empty);
+
+            // Filter items by current inventory ID
+            var filteredItems = items.Where(item => item.InventoryId == currentInventoryID);
+
             // Add rows for each item
-            foreach (var item in items)
+            foreach (var item in filteredItems)
             {
                 row++;
                 InventoryGrid.RowDefinitions.Add(new RowDefinition

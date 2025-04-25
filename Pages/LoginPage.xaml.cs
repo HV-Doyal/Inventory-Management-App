@@ -7,6 +7,7 @@ using Microsoft.Maui.Storage;
 
 public partial class LoginPage : ContentPage
 {
+    public static string currentInventoryID;
 	public LoginPage()
 	{
 		InitializeComponent();
@@ -30,6 +31,11 @@ public partial class LoginPage : ContentPage
 
         if (await userMangement.isAccountValid(username, password))
         {
+            currentInventoryID = await userMangement.GetInventoryIDAsync(username, password);
+            Console.WriteLine("public var:");
+            Console.WriteLine(currentInventoryID);
+            Console.WriteLine("Preference");
+            Console.WriteLine(Preferences.Get("inventoryId", string.Empty));
             usernameEntry.Text = string.Empty;
             passwordEntry.Text = string.Empty;
             await Navigation.PushModalAsync(new Dashboard());
