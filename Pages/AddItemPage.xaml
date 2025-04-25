@@ -45,7 +45,7 @@
                 <Label 
                     Text="Price" 
                     TextColor="{StaticResource TextColor}"/>
-                
+
                 <Entry 
                     x:Name="priceEntry" 
                     BackgroundColor="{StaticResource ButtonColor}" 
@@ -76,7 +76,7 @@
             <Label 
                 Text="Barcode" 
                 TextColor="{StaticResource TextColor}"/>
-            
+
             <Button 
                 x:Name="scanButton"
                 Clicked="scanButton_Clicked"
@@ -84,7 +84,7 @@
                 BackgroundColor="{StaticResource ButtonColor}" 
                 TextColor="{StaticResource TextColor}" 
                 />
-            
+
             <Label 
                 x:Name="barcodeStatusLabel"
                 Text="No Barcode" 
@@ -99,6 +99,13 @@
             Clicked="addItemButton_Clicked"
             Text="Add Item" 
             BackgroundColor="{StaticResource ButtonColor}" 
+            TextColor="{StaticResource TextColor}" 
+            />
+        <Button 
+            x:Name="ImportFromCSV"
+            Clicked="ImportFromCSV_Clicked"
+            Text="Import Items From JSON" 
+            BackgroundColor= "Transparent"
             TextColor="{StaticResource TextColor}" 
             />
     </VerticalStackLayout>

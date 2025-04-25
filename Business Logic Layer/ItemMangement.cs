@@ -75,5 +75,26 @@ namespace UndergradProject.Business_Logic_Layer
         {
             await databaseItemService.UpdateDataAsync(item);
         }
+
+        public async Task<bool> createItem(string itemName, string category, string barcode, int quantity, decimal unitPrice, string inventoryId)
+        {
+            await initialiseItemTable();
+            Item item = new Item(itemName, category, barcode, quantity, unitPrice, inventoryId);
+            Console.WriteLine("Item created from CSV or external source!");
+            Console.WriteLine($"ItemID: {item.itemId}, Name: {item.name}, Category: {item.category}, Barcode: {item.barcode}, Quantity: {item.quantity}, Unit Price: {item.unitPrice}");
+
+            if (!await IsItemPresentInDatabase(item))
+            {
+                await addItemToDatabase(item);
+                Console.WriteLine("Item added to database successfully!");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Duplicate item skipped!");
+                return false;
+            }
+        }
+
     }
 }

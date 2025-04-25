@@ -1,4 +1,5 @@
 using Microsoft.Maui;
+using Newtonsoft.Json;
 using UndergradProject.Business_Logic_Layer;
 using UndergradProject.Data_Access_Layer.Models;
 
@@ -88,4 +89,73 @@ public partial class AddItemPage : ContentPage
         }
     }
 
+    private async void ImportFromCSV_Clicked(object sender, EventArgs e)
+    {
+        // Requesting permissions for Android (for file access)
+        var status = await Permissions.RequestAsync<Permissions.StorageRead>();
+
+        if (status != PermissionStatus.Granted)
+        {
+            await DisplayAlert("Permission Denied", "Storage permission is required to select a file.", "OK");
+            return;
+        }
+
+        // Proceed with the file picker logic
+        try
+        {
+            var fileResult = await FilePicker.PickAsync(new PickOptions
+            {
+                PickerTitle = "Select a JSON file",
+                FileTypes = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+            {
+                { DevicePlatform.WinUI, new[] { ".json" } },
+                { DevicePlatform.Android, new[] { "application/json" } },
+                { DevicePlatform.iOS, new[] { "application/json" } },
+                { DevicePlatform.MacCatalyst, new[] { "application/json" } },
+            })
+            });
+
+            if (fileResult == null)
+                return;
+
+            using var stream = await fileResult.OpenReadAsync();
+            using var reader = new StreamReader(stream);
+            string json = await reader.ReadToEndAsync();
+
+            string currentInventoryID = Preferences.Get("inventoryId", string.Empty);
+            if (string.IsNullOrEmpty(currentInventoryID))
+            {
+                await DisplayAlert("Error", "No Inventory ID found for current session.", "OK");
+                return;
+            }
+
+            List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
+
+            // Here we go through each item and add it to the database
+            ItemMangement itemMangement = new ItemMangement();
+            int successCount = 0;
+            List<string> errors = new List<string>();
+
+            foreach (var item in items)
+            {
+                // Add Inventory ID to each item
+                item.InventoryId = currentInventoryID;
+
+                bool created = await itemMangement.createItem(item.name, item.category, item.barcode, item.quantity, item.unitPrice);
+                if (created)
+                    successCount++;
+                else
+                    errors.Add($"Failed to add item: {item.name}");
+            }
+
+            await DisplayAlert("Import Complete", $"{successCount} items added.\n{errors.Count} errors.", "OK");
+
+            if (errors.Count > 0)
+                Console.WriteLine(string.Join(Environment.NewLine, errors));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+        }
+    }
 }
